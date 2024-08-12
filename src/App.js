@@ -8,25 +8,25 @@ import {
   Route,
 } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
-import Search from './components/Search';
+//import Search from './components/Search';
 
 
 const App = () =>{
   const apiKey=process.env.REACT_APP_NEWS_API
   const pagesize = 15;
   const [progress, setProgress] = useState(0)
-  const [searchQuery, setSearchQuery] = useState('')
+  //const [searchQuery, setSearchQuery] = useState('')
 
-  const handleSearchChange = (query) =>{
+  /*const handleSearchChange = (query) =>{
       setSearchQuery(query)
-  }
+  }*/
 
 
     return (
       <div>
         <Router>
           <div>
-        <Navbar onSearchChange={handleSearchChange}/>
+        <Navbar />
         <div>
       <LoadingBar
         color='#f11946'
@@ -35,11 +35,11 @@ const App = () =>{
       />
     </div>
         <Switch>
-        {searchQuery && (
+        {/*{searchQuery && (
               <Route exact path="/everything">
                 <News setProgress={setProgress} apiKey={apiKey} pagesize={pagesize} key="everything" country="in" searchQuery={searchQuery} />
               </Route>
-            )}
+            )}*/}
           <Route exact path="/">
           <News setProgress={setProgress} apiKey={apiKey} pagesize={pagesize}  key="general" country="in" category="general"/>
           </Route>

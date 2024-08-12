@@ -1,8 +1,11 @@
 import React from 'react';
+import default_img from './default.jpg';
 
 
 const NewsItem = (props) => {
+
     const { title, description, imageUrl, newsUrl, author, date, source } = props;
+    //console.log('Image URL:', imageUrl);
     return (
         <a rel="noreferrer" style={{ textDecoration: 'None' }} href={newsUrl} target="_blank">
             <div className="my-3">
@@ -16,7 +19,7 @@ const NewsItem = (props) => {
                         <span className="badge rounded-pill bg-danger">{source}</span>
                     </div>
 
-                        <img src={!imageUrl ? "https://fdn.gsmarena.com/imgroot/news/21/08/xiaomi-smart-home-india-annoucnements/-476x249w4/gsmarena_00.jpg" : imageUrl} className="card-img-top w-100" alt="..." />
+                        <img src={!imageUrl ? default_img : imageUrl} className="card-img-top w-100" alt="..." />
 
                     <div className="card-body">
                         <h5 className="card-title underline-on-hover">{title}</h5>
