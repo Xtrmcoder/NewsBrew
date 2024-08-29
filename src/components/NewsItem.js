@@ -4,20 +4,13 @@ import default_img from './default.jpg';
 
 const NewsItem = (props) => {
 
-    const { title, description, imageUrl, newsUrl, author, date, source } = props;
+    const { title, description, imageUrl, newsUrl, author, date } = props;
     //console.log('Image URL:', imageUrl);
     return (
         <a rel="noreferrer" style={{ textDecoration: 'None' }} href={newsUrl} target="_blank">
             <div className="my-3">
                 <div className="card border border-black">
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        position: 'absolute',
-                        right: '0'
-                    }}>
-                        <span className="badge rounded-pill bg-danger">{source}</span>
-                    </div>
+                    
 
                         <img src={!imageUrl ? default_img : imageUrl} className="card-img-top w-100" alt="..." />
 
