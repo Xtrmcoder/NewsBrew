@@ -15,19 +15,25 @@ const News = (props)=>{
         return string.charAt(0).toUpperCase() + string.slice(1);
     } 
 
-    const updateNews = async ()=> {
-        props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`; 
-        setLoading(true)
-        let data = await fetch(url);
-        props.setProgress(30);
-        let parsedData = await data.json()
-        props.setProgress(70);
-        setArticles(parsedData.articles)
-        setTotalResults(parsedData.totalResults)
-        setLoading(false)
-        props.setProgress(100);
-    }
+    const updateNews = async () => {
+        try {
+            props.setProgress(10);
+            const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`; 
+            setLoading(true);
+            let data = await fetch(url);
+            props.setProgress(30);
+            let parsedData = await data.json();
+            props.setProgress(70);
+            setArticles(parsedData.articles);
+            setTotalResults(parsedData.totalResults);
+            setLoading(false);
+            props.setProgress(100);
+        } catch (error) {
+            console.error("Failed to fetch news articles:", error);
+            setLoading(false);
+        }
+    };
+    
 
     useEffect(() => {
         document.title = `${capitalizeFirstLetter(props.category)} - NewsBrew`;
@@ -37,14 +43,15 @@ const News = (props)=>{
 
 
     const fetchMoreData = async () => {   
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`;
-        setPage(page+1) 
+        const nextPage = page + 1; // Increment page before using it in the URL
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${nextPage}&pageSize=${props.pageSize}`;
         let data = await fetch(url);
-        let parsedData = await data.json()
-        console.log(parsedData.urlToImage)
-        setArticles(articles.concat(parsedData.articles))
-        setTotalResults(parsedData.totalResults)
-      };
+        let parsedData = await data.json();
+        setPage(nextPage); // Set the page after fetch is successful
+        setArticles(articles.concat(parsedData.articles));
+        setTotalResults(parsedData.totalResults);
+    };
+    
  
         return (
             <div style={{ margin: '35px 0px', marginTop: '140px' }}>
