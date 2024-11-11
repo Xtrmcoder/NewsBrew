@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//import Search from "./Search";
 
 
 const Navbar = (props) => {
@@ -11,22 +10,9 @@ const Navbar = (props) => {
       <div class="row">
         <div class="text-center">
           <Link className='nav-link' to='/'>
-          <h3>NewsBrew</h3>
+          <h3>iNews</h3>
           </Link>
         </div>
-       {/*} <div class="col-md-4">
-          <Search />
-        </div>*/}
-
-       {/*} <div class="col-md-4 d-flex justify-content-center justify-content-md-end align-items-center">
-          <div class="d-flex">
-          <div class="form-check form-switch">
-  <input class="form-check-input border-black" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-  <label class="form-check-label" for="flexSwitchCheckDefault">Enable Dark Mode</label>
-</div>
-          </div>  
-        </div>*/}
-       
       </div>
     </div>
   </div>
